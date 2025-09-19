@@ -1,2 +1,5 @@
 19 sep
+
 git - uploading file
+
+1st day of hackathon (DevOps)
