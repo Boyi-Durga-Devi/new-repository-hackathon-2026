@@ -1,96 +1,91 @@
+<!DOCTYPE html>
 <html>
 <head>
-  <title>After Intermediate ‒ AP Career Options</title>
-  <script type="text/javascript">
-    function showSection(id) {
-      var secs = document.getElementsByClassName("section");
-      for (var i = 0; i < secs.length; i++) {
-        secs[i].style.display = "none";
+  <title>Career Options after Intermediate</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1 { color: green; }
+    select, button { margin: 10px 0; padding: 5px; }
+    #info { margin-top: 20px; }
+  </style>
+  <script>
+    // Data for career options
+    var careerData = {
+      "Engineering": {
+        exams: ["EAPCET", "JEE Main"],
+        colleges: {
+          "IIT Tirupati": { location: "Tirupati", fee: "₹1,00,000 per semester" },
+          "NIT Andhra Pradesh": { location: "Tadepalligudem", fee: "₹62,500 per semester" },
+          "JNTUK Kakinada": { location: "Kakinada", fee: "₹30,000 - ₹11,00,000 for entire course" },
+          "KL University": { location: "Guntur", fee: "₹2,27,500 per year for CSE" }
+        }
+      },
+      "Medical": {
+        exams: ["NEET"],
+        colleges: {
+          "Andhra Medical College": { location: "Visakhapatnam", fee: "₹11,576 per year" },
+          "Guntur Medical College": { location: "Guntur", fee: "₹11,576 per year" }
+        }
+      },
+      "Degree Courses": {
+        exams: ["None / University Admission Test"],
+        colleges: {
+          "Andhra University College of Arts & Commerce": { location: "Visakhapatnam", fee: "₹26,040 for 3 years" },
+          "Sri Venkateswara College of Arts & Science": { location: "Tirupati", fee: "₹26,040 for 3 years" }
+        }
       }
-      document.getElementById(id).style.display = "block";
+    };
+
+    function showExams() {
+      var career = document.getElementById("career").value;
+      var infoDiv = document.getElementById("info");
+      if(career == "") {
+        infoDiv.innerHTML = "";
+        return;
+      }
+      var exams = careerData[career].exams;
+      var html = "<h3>Exams Required for " + career + ":</h3><ul>";
+      for(var i=0; i<exams.length; i++) {
+        html += "<li>" + exams[i] + "</li>";
+      }
+      html += "</ul>";
+
+      html += "<h3>Select College:</h3>";
+      html += "<select id='collegeSelect' onchange='showFee()'><option value=''>--Select--</option>";
+      for(var college in careerData[career].colleges) {
+        html += "<option value='" + college + "'>" + college + "</option>";
+      }
+      html += "</select>";
+      html += "<div id='feeInfo'></div>";
+
+      infoDiv.innerHTML = html;
     }
-    function backToMain() {
-      var secs = document.getElementsByClassName("section");
-      for (var i = 0; i < secs.length; i++) {
-        secs[i].style.display = "none";
+
+    function showFee() {
+      var career = document.getElementById("career").value;
+      var college = document.getElementById("collegeSelect").value;
+      var feeDiv = document.getElementById("feeInfo");
+      if(college == "") {
+        feeDiv.innerHTML = "";
+        return;
       }
-      document.getElementById("mainOptions").style.display = "block";
+      var data = careerData[career].colleges[college];
+      feeDiv.innerHTML = "<h4>College: " + college + "</h4>" +
+                         "<p>Location: " + data.location + "</p>" +
+                         "<p>Fee: " + data.fee + "</p>";
     }
   </script>
 </head>
-<body bgcolor="lightcyan">
+<body>
+  <h1>🎉 Congratulations on Completing Intermediate! 🎉</h1>
+  <p>Select a career option to explore:</p>
+  <select id="career" onchange="showExams()">
+    <option value="">--Select Career Option--</option>
+    <option value="Engineering">Engineering (B.Tech/B.E)</option>
+    <option value="Medical">Medical & Allied (MBBS/BDS/BPT)</option>
+    <option value="Degree Courses">Degree Courses (B.Sc/B.Com/BA/BBA/BCA)</option>
+  </select>
 
-  <h1 align="center">🎓 Congratulations! You have passed Intermediate</h1>
-  <hr>
-
-  <div id="mainOptions">
-    <h2>Choose Your Next Option:</h2>
-    <ul>
-      <li><a href="javascript:showSection('eng')">Engineering (B.Tech)</a></li>
-      <li><a href="javascript:showSection('med')">Medicine (MBBS / Private & Govt)</a></li>
-      <!-- you can add more options like Degree, Paramedical, etc. -->
-    </ul>
-  </div>
-
-  <!-- Engineering Section -->
-  <div id="eng" class="section" style="display:none;">
-    <h2>Engineering (B.Tech)</h2>
-    <p><b>Entrance Exams:</b> AP EAMCET, JEE Mains, etc.</p>
-    <h3>Top Engineering Colleges in AP & Approx Fees</h3>
-    <table border="1" cellpadding="5" cellspacing="0" width="80%">
-      <tr bgcolor="#dddddd">
-        <th>College</th>
-        <th>Location</th>
-        <th>Approx Annual Fee</th>
-      </tr>
-      <tr>
-        <td>Vignan University (CSE / ECE)</td>
-        <td>Andhra Pradesh</td>
-        <td>₹2,80,000/year for top branches; other branches ~₹2,00,000/year :contentReference[oaicite:7]{index=7}</td>
-      </tr>
-      <tr>
-        <td>Andhra University College of Engineering</td>
-        <td>Visakhapatnam</td>
-        <td>~ ₹1,20,000/year (for self-support or special category) :contentReference[oaicite:8]{index=8}</td>
-      </tr>
-      <tr>
-        <td>RVR & JC College of Engineering</td>
-        <td>Guntur</td>
-        <td>~ ₹1,08,000/year (private college fee) :contentReference[oaicite:9]{index=9}</td>
-      </tr>
-    </table>
-
-    <button onclick="backToMain()">Back</button>
-  </div>
-
-  <!-- Medicine Section -->
-  <div id="med" class="section" style="display:none;">
-    <h2>Medicine (MBBS)</h2>
-    <p><b>Entrance Exams:</b> NEET-UG</p>
-    <h3>Top Medical Colleges in AP & Fee Details</h3>
-    <table border="1" cellpadding="5" cellspacing="0" width="80%">
-      <tr bgcolor="#dddddd">
-        <th>College</th>
-        <th>Location</th>
-        <th>Government / Private</th>
-        <th>Approx Annual Tuition Fee</th>
-      </tr>
-      <tr>
-        <td>Government Medical College, Rajamahendravaram</td>
-        <td>Rajahmundry</td>
-        <td>Government</td>
-        <td>~ ₹15,000/year under convenor quota for state students; for other categories may be more :contentReference[oaicite:10]{index=10}</td>
-      </tr>
-      <tr>
-        <td>Apollo Institute of Medical Sciences, Chittoor</td>
-        <td>Chittoor</td>
-        <td>Private / Category B</td>
-        <td>~ ₹12,00,000+/year in many cases for private MBBS colleges in AP (Cat B) :contentReference[oaicite:11]{index=11}</td>
-      </tr>
-    </table>
-
-    <button onclick="backToMain()">Back</button>
-  </div>
-
+  <div id="info"></div>
 </body>
 </html>
