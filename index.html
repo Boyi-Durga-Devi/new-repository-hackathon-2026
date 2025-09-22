@@ -1,47 +1,137 @@
 <html>
 <head>
-  <title>Options After Intermediate</title>
+  <title>Career Options After Intermediate</title>
+  <script type="text/javascript">
+    function showSection(id) {
+      var sections = document.getElementsByClassName("section");
+      for (var i = 0; i < sections.length; i++) {
+        sections[i].style.display = "none";
+      }
+      document.getElementById(id).style.display = "block";
+    }
+  </script>
 </head>
-<body bgcolor="lightyellow" text="black">
+<body bgcolor="lightyellow">
 
-  <h1 align="center">Options After Intermediate</h1>
-  <p align="center">Guidance for newly passed-out students</p>
+  <h1 align="center">🎉 Congratulations! 🎉</h1>
+  <h2 align="center">You have successfully completed Intermediate</h2>
   <hr>
 
-  <h2>1. Engineering</h2>
-  <p>Next Step: Write Engineering Entrance Exams (like EAMCET, JEE).</p>
-  <h3>Colleges & Groups Available</h3>
+  <h3>Choose Your Next Step:</h3>
   <ul>
-    <li><b>College:</b> ABC Engineering College <br> <b>Groups:</b> CSE, ECE, Mechanical <br> <b>Rating:</b> ★★★★☆</li>
-    <li><b>College:</b> XYZ Institute of Technology <br> <b>Groups:</b> IT, Civil, EEE <br> <b>Rating:</b> ★★★☆☆</li>
+    <li><a href="javascript:showSection('btech')">Engineering (B.Tech)</a></li>
+    <li><a href="javascript:showSection('medicine')">Medicine (MBBS, BDS, BAMS)</a></li>
+    <li><a href="javascript:showSection('degree')">Degree Courses (B.Sc, B.Com, BA, BBA)</a></li>
+    <li><a href="javascript:showSection('others')">Other Options</a></li>
   </ul>
 
-  <h2>2. Medicine</h2>
-  <p>Next Step: Write NEET exam to get admission in MBBS, BDS, BAMS etc.</p>
-  <h3>Colleges & Groups Available</h3>
-  <ul>
-    <li><b>College:</b> City Medical College <br> <b>Groups:</b> MBBS, BDS <br> <b>Rating:</b> ★★★★★</li>
-    <li><b>College:</b> State Ayurveda College <br> <b>Groups:</b> BAMS <br> <b>Rating:</b> ★★★★☆</li>
-  </ul>
+  <!-- B.Tech Section -->
+  <div id="btech" class="section" style="display:none;">
+    <h2>Engineering (B.Tech)</h2>
+    <h3>Entrance Exams:</h3>
+    <ul>
+      <li>EAMCET (State Level)</li>
+      <li>JEE Mains</li>
+      <li>JEE Advanced</li>
+    </ul>
 
-  <h2>3. Degree (B.Sc, B.Com, BA)</h2>
-  <p>Next Step: Choose regular degree based on interest in Science, Commerce or Arts.</p>
-  <h3>Colleges & Groups Available</h3>
-  <ul>
-    <li><b>College:</b> Govt Degree College <br> <b>Groups:</b> B.Sc (MPC, BZC), B.Com, BA <br> <b>Rating:</b> ★★★★☆</li>
-    <li><b>College:</b> National Degree College <br> <b>Groups:</b> B.Sc (Computers), BBA <br> <b>Rating:</b> ★★★☆☆</li>
-  </ul>
+    <h3>Top Colleges:</h3>
+    <ul>
+      <li>
+        <b>ABC Engineering College</b>
+        <ul>
+          <li>Fee: 1st Year - ₹80,000</li>
+          <li>2nd Year - ₹75,000</li>
+          <li>3rd Year - ₹75,000</li>
+          <li>4th Year - ₹75,000</li>
+        </ul>
+      </li>
+      <li>
+        <b>XYZ Institute of Technology</b>
+        <ul>
+          <li>Fee: 1st Year - ₹90,000</li>
+          <li>2nd Year - ₹85,000</li>
+          <li>3rd Year - ₹85,000</li>
+          <li>4th Year - ₹85,000</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 
-  <h2>4. Other Career Options</h2>
-  <ul>
-    <li>Polytechnic / Diploma Courses</li>
-    <li>Paramedical Courses</li>
-    <li>CA, CS, CMA (for commerce students)</li>
-    <li>Govt Job Preparation</li>
-  </ul>
+  <!-- Medicine Section -->
+  <div id="medicine" class="section" style="display:none;">
+    <h2>Medicine</h2>
+    <h3>Entrance Exam:</h3>
+    <ul>
+      <li>NEET</li>
+    </ul>
 
-  <hr>
-  <p align="center"><b>Note:</b> Ratings are based on student feedback & reviews.</p>
+    <h3>Top Colleges:</h3>
+    <ul>
+      <li>
+        <b>City Medical College</b>
+        <ul>
+          <li>Fee: 1st Year - ₹3,50,000</li>
+          <li>2nd Year - ₹3,00,000</li>
+          <li>3rd Year - ₹3,00,000</li>
+          <li>4th Year - ₹3,00,000</li>
+          <li>Internship Stipend Available</li>
+        </ul>
+      </li>
+      <li>
+        <b>State Ayurveda College</b>
+        <ul>
+          <li>Fee: 1st Year - ₹1,20,000</li>
+          <li>2nd Year - ₹1,00,000</li>
+          <li>3rd Year - ₹1,00,000</li>
+          <li>4th Year - ₹1,00,000</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Degree Section -->
+  <div id="degree" class="section" style="display:none;">
+    <h2>Degree Courses</h2>
+    <h3>Options:</h3>
+    <ul>
+      <li>B.Sc (MPC, BZC, Computers)</li>
+      <li>B.Com</li>
+      <li>BBA</li>
+      <li>BA</li>
+    </ul>
+
+    <h3>Top Colleges:</h3>
+    <ul>
+      <li>
+        <b>Govt Degree College</b>
+        <ul>
+          <li>Fee: 1st Year - ₹15,000</li>
+          <li>2nd Year - ₹12,000</li>
+          <li>3rd Year - ₹12,000</li>
+        </ul>
+      </li>
+      <li>
+        <b>National Degree College</b>
+        <ul>
+          <li>Fee: 1st Year - ₹25,000</li>
+          <li>2nd Year - ₹20,000</li>
+          <li>3rd Year - ₹20,000</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Other Options Section -->
+  <div id="others" class="section" style="display:none;">
+    <h2>Other Options</h2>
+    <ul>
+      <li>Polytechnic / Diploma Courses (Fee: ~₹20,000 per year)</li>
+      <li>Paramedical Courses (Fee varies ₹30,000 – ₹70,000 per year)</li>
+      <li>CA / CS / CMA (Commerce Students)</li>
+      <li>Govt Job Preparation (Banking, Railways, Defence)</li>
+    </ul>
+  </div>
 
 </body>
 </html>
