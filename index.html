@@ -137,7 +137,7 @@
       infoDiv.innerHTML = "";
       if(stream == "") { courseDiv.innerHTML = ""; return; }
 
-      var html = "<h3>Options for " + stream + "students"+":</h3>";
+      var html = "<h3>Options for " + stream +":</h3>";
       html += "<select id='courseSelect' onchange='showExams()'><option value=''>--Select Course--</option>";
       for(var course in careerData[stream]) {
         html += "<option value='" + course + "'>" + course + "</option>";
