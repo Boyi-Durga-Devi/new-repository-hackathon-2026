@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Career Options after Intermediate</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1 { color: green; }
+    select, button { margin: 10px 0; padding: 5px; }
+    #info, #courseInfo, #collegeInfo { margin-top: 20px; }
+  </style>
+  <script>
+    // Career data structured by stream → course → exams → colleges → fees/location
+    var careerData = {
+      "MPC": {
+        "Engineering (B.Tech/B.E)": {
+          exams: ["EAPCET", "JEE Main"],
+          colleges: {
+            "IIT Tirupati": { location: "Tirupati", fee: "₹1,00,000 per semester" },
+            "NIT Andhra Pradesh": { location: "Tadepalligudem", fee: "₹62,500 per semester" },
+            "JNTUK Kakinada": { location: "Kakinada", fee: "₹30,000 - ₹11,00,000 entire course" },
+            "Andhra University College of Engineering": { location: "Visakhapatnam", fee: "₹1,78,000 entire course" },
+            "Sri Venkateswara University College of Engineering": { location: "Tirupati", fee: "₹1,20,000 per year" },
+            "Madanapalle Institute of Technology & Science": { location: "Madanapalle", fee: "₹2,71,000 - ₹2,79,000 per year" },
+            "KL University": { location: "Guntur", fee: "₹2,27,500 per year for CSE; ₹2,02,500 per year for ECE; ₹2,40,000 per year for Mechanical" },
+            "Vignan's Foundation for Science, Technology & Research": { location: "Guntur", fee: "₹4,20,000 - ₹11,40,000 entire course" },
+            "GITAM University": { location: "Visakhapatnam", fee: "₹1,00,000 - ₹1,50,000 per year" },
+            "GMR Institute of Technology": { location: "Rajam", fee: "₹1,00,000 - ₹1,50,000 per year" },
+            "Vishnu Institute of Technology": { location: "Bhimavaram", fee: "₹1,00,000 - ₹1,50,000 per year" },
+            "VR Siddhartha Engineering College": { location: "Vijayawada", fee: "₹1,00,000 - ₹1,50,000 per year" },
+            "Aditya Engineering College": { location: "Surampalem", fee: "₹1,00,000 - ₹1,50,000 per year" },
+            "Raghu Engineering College": { location: "Visakhapatnam", fee: "₹1,00,000 - ₹1,50,000 per year" }
+          }
+        },
+        "B.Sc (Maths, Physics, Chemistry, Data Science)": {
+          exams: ["University Admission Test / Merit"],
+          colleges: {
+            "Andhra University College of Arts & Commerce": { location: "Visakhapatnam", fee: "₹26,040 for 3 years" },
+            "Sri Venkateswara College of Arts & Science": { location: "Tirupati", fee: "₹26,040 for 3 years" }
+          }
+        },
+        "Defence (NDA, Army, Navy, Airforce)": {
+          exams: ["NDA Exam"],
+          colleges: {}
+        },
+        "CA / Law": {
+          exams: ["CPT / CLAT"],
+          colleges: {}
+        }
+      },
+      "BiPC": {
+        "Medicine (MBBS, BDS, BAMS, BHMS)": {
+          exams: ["NEET"],
+          colleges: {
+            "Andhra Medical College": { location: "Visakhapatnam", fee: "₹11,576 per year" },
+            "Guntur Medical College": { location: "Guntur", fee: "₹11,576 per year" },
+            "Kurnool Medical College": { location: "Kurnool", fee: "₹11,576 per year" },
+            "Rajahmundry Medical College": { location: "Rajahmundry", fee: "₹11,576 per year" },
+            "Nellore Medical College": { location: "Nellore", fee: "₹11,576 per year" },
+            "Chittoor Medical College": { location: "Chittoor", fee: "₹11,576 per year" },
+            "Kadapa Medical College": { location: "Kadapa", fee: "₹11,576 per year" },
+            "Anantapur Medical College": { location: "Anantapur", fee: "₹11,576 per year" }
+          }
+        },
+        "Paramedical / B.Sc Nursing / Allied": {
+          exams: ["NEET / University Admission"],
+          colleges: {}
+        },
+        "B.Sc (Microbiology, Biotechnology, Agriculture, Horticulture, Forestry, Fisheries)": {
+          exams: ["University Admission Test"],
+          colleges: {}
+        },
+        "Pharmacy (B.Pharmacy, Pharma.D)": {
+          exams: ["EAPCET / University Admission"],
+          colleges: {
+            "Sri Venkateswara College of Pharmacy": { location: "Tirupati", fee: "₹50,000 - ₹1,00,000 per year" },
+            "Vignan Pharmacy College": { location: "Vadlamudi", fee: "₹50,000 - ₹1,00,000 per year" },
+            "Raghu College of Pharmacy": { location: "Visakhapatnam", fee: "₹50,000 - ₹1,00,000 per year" },
+            "Aditya College of Pharmacy": { location: "Surampalem", fee: "₹50,000 - ₹1,00,000 per year" },
+            "Narayana Pharmacy College": { location: "Nellore", fee: "₹50,000 - ₹1,00,000 per year" },
+            "GITAM Pharmacy College": { location: "Visakhapatnam", fee: "₹1,00,000 - ₹1,50,000 per year" },
+            "KL University College of Pharmacy": { location: "Guntur", fee: "₹1,50,000 - ₹2,00,000 per year" }
+          }
+        },
+        "Defence (NDA, Army, Navy, Airforce)": {
+          exams: ["NDA Exam"],
+          colleges: {}
+        }
+      },
+      "CEC/MEC": {
+        "B.Com / BBA": {
+          exams: ["University Admission Test"],
+          colleges: {
+            "Vignan Degree College": { location: "Vadlamudi", fee: "₹50,000 - 1,00,000 per year" },
+            "KL University College of Arts & Sciences": { location: "Guntur", fee: "₹1,50,000 - ₹2,00,000 per year" },
+            "GITAM College of Arts, Science & Commerce": { location: "Visakhapatnam", fee: "₹1,00,000 - ₹1,50,000 per year" }
+          }
+        },
+        "Professional Courses (CA, CS, CMA)": {
+          exams: ["CPT / CS Foundation / CMA Foundation"],
+          colleges: {}
+        },
+        "Law (BA LLB, BBA LLB, B.Com LLB)": {
+          exams: ["CLAT / University Admission"],
+          colleges: {
+            "Dr. B.R. Ambedkar College of Law": { location: "Visakhapatnam", fee: "₹40,500 entire course" },
+            "Sri Venkateswara College of Law": { location: "Tirupati", fee: "₹51,875 entire course" },
+            "Narayana College of Law": { location: "Nellore", fee: "₹40,000 - ₹50,000 entire course" },
+            "GITAM School of Law": { location: "Visakhapatnam", fee: "₹1,50,000 per year" },
+            "Vignan Law College": { location: "Vadlamudi", fee: "₹1,00,000 per year" },
+            "Raghu Law College": { location: "Visakhapatnam", fee: "₹1,00,000 per year" },
+            "Aditya Law College": { location: "Surampalem", fee: "₹1,00,000 per year" }
+          }
+        }
+      },
+      "HEC/Arts": {
+        "BA / Humanities / Civil Services Prep": {
+          exams: ["University Admission / UPSC Prelims"],
+          colleges: {
+            "Andhra University College of Arts & Commerce": { location: "Visakhapatnam", fee: "₹26,040 for 3 years" },
+            "Sri Venkateswara College of Arts & Science": { location: "Tirupati", fee: "₹26,040 for 3 years" }
+          }
+        },
+        "Law (BA LLB)": {
+          exams: ["CLAT / University Admission"],
+          colleges: {
+            "Dr. B.R. Ambedkar College of Law": { location: "Visakhapatnam", fee: "₹40,500 entire course" },
+            "Sri Venkateswara College of Law": { location: "Tirupati", fee: "₹51,875 entire course" }
+          }
+        }
+      }
+    };
+
+    function showCourses() {
+      var stream = document.getElementById("stream").value;
+      var courseDiv = document.getElementById("courseInfo");
+      var infoDiv = document.getElementById("info");
+      infoDiv.innerHTML = "";
+      if(stream == "") { courseDiv.innerHTML = ""; return; }
+
+      var html = "<h3>Options for " + stream + "students"+":</h3>";
+      html += "<select id='courseSelect' onchange='showExams()'><option value=''>--Select Course--</option>";
+      for(var course in careerData[stream]) {
+        html += "<option value='" + course + "'>" + course + "</option>";
+      }
+      html += "</select>";
+      courseDiv.innerHTML = html;
+      document.getElementById("collegeInfo").innerHTML = "";
+    }
+
+    function showExams() {
+      var stream = document.getElementById("stream").value;
+      var course = document.getElementById("courseSelect").value;
+      var infoDiv = document.getElementById("info");
+      if(course == "") { infoDiv.innerHTML = ""; return; }
+
+      var exams = careerData[stream][course].exams;
+      var html = "<h3>Exams Required for " + course + ":</h3><ul>";
+      for(var i=0;i<exams.length;i++) html += "<li>" + exams[i] + "</li>";
+      html += "</ul>";
+
+      html += "<h3>Select College:</h3>";
+      html += "<select id='collegeSelect' onchange='showFee()'><option value=''>--Select College--</option>";
+      var colleges = careerData[stream][course].colleges;
+      for(var college in colleges) {
+        html += "<option value='" + college + "'>" + college + "</option>";
+      }
+      html += "</select>";
+      html += "<div id='collegeInfo'></div>";
+
+      infoDiv.innerHTML = html;
+    }
+
+    function showFee() {
+      var stream = document.getElementById("stream").value;
+      var course = document.getElementById("courseSelect").value;
+      var college = document.getElementById("collegeSelect").value;
+      var feeDiv = document.getElementById("collegeInfo");
+      if(college == "") { feeDiv.innerHTML = ""; return; }
+
+      var data = careerData[stream][course].colleges[college];
+      feeDiv.innerHTML = "<h4>College: " + college + "</h4>" +
+                         "<p>Location: " + data.location + "</p>" +
+                         "<p>Fee: " + data.fee + "</p>";
+    }
+  </script>
+</head>
+<body>
+  <h1>🎉 Congratulations on Completing Intermediate! 🎉</h1>
+  <p>Select your Stream:</p>
+  <select id="stream" onchange="showCourses()">
+    <option value="">--Select Stream--</option>
+    <option value="MPC">MPC (Maths, Physics, Chemistry)</option>
+    <option value="BiPC">BiPC (Biology, Physics, Chemistry)</option>
+    <option value="CEC/MEC">CEC/MEC (Commerce)</option>
+    <option value="HEC/Arts">HEC / Arts (Humanities)</option>
+  </select>
+
+  <div id="courseInfo"></div>
+  <div id="info"></div>
+  <div id="collegeInfo"></div>
+</body>
+</html>
