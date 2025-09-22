@@ -1,136 +1,95 @@
 <html>
 <head>
-  <title>Career Options After Intermediate</title>
+  <title>After Intermediate ‒ AP Career Options</title>
   <script type="text/javascript">
     function showSection(id) {
-      var sections = document.getElementsByClassName("section");
-      for (var i = 0; i < sections.length; i++) {
-        sections[i].style.display = "none";
+      var secs = document.getElementsByClassName("section");
+      for (var i = 0; i < secs.length; i++) {
+        secs[i].style.display = "none";
       }
       document.getElementById(id).style.display = "block";
     }
+    function backToMain() {
+      var secs = document.getElementsByClassName("section");
+      for (var i = 0; i < secs.length; i++) {
+        secs[i].style.display = "none";
+      }
+      document.getElementById("mainOptions").style.display = "block";
+    }
   </script>
 </head>
-<body bgcolor="lightyellow">
+<body bgcolor="lightcyan">
 
-  <h1 align="center">🎉 Congratulations! 🎉</h1>
-  <h2 align="center">You have successfully completed Intermediate</h2>
+  <h1 align="center">🎓 Congratulations! You have passed Intermediate</h1>
   <hr>
 
-  <h3>Choose Your Next Step:</h3>
-  <ul>
-    <li><a href="javascript:showSection('btech')">Engineering (B.Tech)</a></li>
-    <li><a href="javascript:showSection('medicine')">Medicine (MBBS, BDS, BAMS)</a></li>
-    <li><a href="javascript:showSection('degree')">Degree Courses (B.Sc, B.Com, BA, BBA)</a></li>
-    <li><a href="javascript:showSection('others')">Other Options</a></li>
-  </ul>
+  <div id="mainOptions">
+    <h2>Choose Your Next Option:</h2>
+    <ul>
+      <li><a href="javascript:showSection('eng')">Engineering (B.Tech)</a></li>
+      <li><a href="javascript:showSection('med')">Medicine (MBBS / Private & Govt)</a></li>
+      <!-- you can add more options like Degree, Paramedical, etc. -->
+    </ul>
+  </div>
 
-  <!-- B.Tech Section -->
-  <div id="btech" class="section" style="display:none;">
+  <!-- Engineering Section -->
+  <div id="eng" class="section" style="display:none;">
     <h2>Engineering (B.Tech)</h2>
-    <h3>Entrance Exams:</h3>
-    <ul>
-      <li>EAMCET (State Level)</li>
-      <li>JEE Mains</li>
-      <li>JEE Advanced</li>
-    </ul>
+    <p><b>Entrance Exams:</b> AP EAMCET, JEE Mains, etc.</p>
+    <h3>Top Engineering Colleges in AP & Approx Fees</h3>
+    <table border="1" cellpadding="5" cellspacing="0" width="80%">
+      <tr bgcolor="#dddddd">
+        <th>College</th>
+        <th>Location</th>
+        <th>Approx Annual Fee</th>
+      </tr>
+      <tr>
+        <td>Vignan University (CSE / ECE)</td>
+        <td>Andhra Pradesh</td>
+        <td>₹2,80,000/year for top branches; other branches ~₹2,00,000/year :contentReference[oaicite:7]{index=7}</td>
+      </tr>
+      <tr>
+        <td>Andhra University College of Engineering</td>
+        <td>Visakhapatnam</td>
+        <td>~ ₹1,20,000/year (for self-support or special category) :contentReference[oaicite:8]{index=8}</td>
+      </tr>
+      <tr>
+        <td>RVR & JC College of Engineering</td>
+        <td>Guntur</td>
+        <td>~ ₹1,08,000/year (private college fee) :contentReference[oaicite:9]{index=9}</td>
+      </tr>
+    </table>
 
-    <h3>Top Colleges:</h3>
-    <ul>
-      <li>
-        <b>ABC Engineering College</b>
-        <ul>
-          <li>Fee: 1st Year - ₹80,000</li>
-          <li>2nd Year - ₹75,000</li>
-          <li>3rd Year - ₹75,000</li>
-          <li>4th Year - ₹75,000</li>
-        </ul>
-      </li>
-      <li>
-        <b>XYZ Institute of Technology</b>
-        <ul>
-          <li>Fee: 1st Year - ₹90,000</li>
-          <li>2nd Year - ₹85,000</li>
-          <li>3rd Year - ₹85,000</li>
-          <li>4th Year - ₹85,000</li>
-        </ul>
-      </li>
-    </ul>
+    <button onclick="backToMain()">Back</button>
   </div>
 
   <!-- Medicine Section -->
-  <div id="medicine" class="section" style="display:none;">
-    <h2>Medicine</h2>
-    <h3>Entrance Exam:</h3>
-    <ul>
-      <li>NEET</li>
-    </ul>
+  <div id="med" class="section" style="display:none;">
+    <h2>Medicine (MBBS)</h2>
+    <p><b>Entrance Exams:</b> NEET-UG</p>
+    <h3>Top Medical Colleges in AP & Fee Details</h3>
+    <table border="1" cellpadding="5" cellspacing="0" width="80%">
+      <tr bgcolor="#dddddd">
+        <th>College</th>
+        <th>Location</th>
+        <th>Government / Private</th>
+        <th>Approx Annual Tuition Fee</th>
+      </tr>
+      <tr>
+        <td>Government Medical College, Rajamahendravaram</td>
+        <td>Rajahmundry</td>
+        <td>Government</td>
+        <td>~ ₹15,000/year under convenor quota for state students; for other categories may be more :contentReference[oaicite:10]{index=10}</td>
+      </tr>
+      <tr>
+        <td>Apollo Institute of Medical Sciences, Chittoor</td>
+        <td>Chittoor</td>
+        <td>Private / Category B</td>
+        <td>~ ₹12,00,000+/year in many cases for private MBBS colleges in AP (Cat B) :contentReference[oaicite:11]{index=11}</td>
+      </tr>
+    </table>
 
-    <h3>Top Colleges:</h3>
-    <ul>
-      <li>
-        <b>City Medical College</b>
-        <ul>
-          <li>Fee: 1st Year - ₹3,50,000</li>
-          <li>2nd Year - ₹3,00,000</li>
-          <li>3rd Year - ₹3,00,000</li>
-          <li>4th Year - ₹3,00,000</li>
-          <li>Internship Stipend Available</li>
-        </ul>
-      </li>
-      <li>
-        <b>State Ayurveda College</b>
-        <ul>
-          <li>Fee: 1st Year - ₹1,20,000</li>
-          <li>2nd Year - ₹1,00,000</li>
-          <li>3rd Year - ₹1,00,000</li>
-          <li>4th Year - ₹1,00,000</li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-
-  <!-- Degree Section -->
-  <div id="degree" class="section" style="display:none;">
-    <h2>Degree Courses</h2>
-    <h3>Options:</h3>
-    <ul>
-      <li>B.Sc (MPC, BZC, Computers)</li>
-      <li>B.Com</li>
-      <li>BBA</li>
-      <li>BA</li>
-    </ul>
-
-    <h3>Top Colleges:</h3>
-    <ul>
-      <li>
-        <b>Govt Degree College</b>
-        <ul>
-          <li>Fee: 1st Year - ₹15,000</li>
-          <li>2nd Year - ₹12,000</li>
-          <li>3rd Year - ₹12,000</li>
-        </ul>
-      </li>
-      <li>
-        <b>National Degree College</b>
-        <ul>
-          <li>Fee: 1st Year - ₹25,000</li>
-          <li>2nd Year - ₹20,000</li>
-          <li>3rd Year - ₹20,000</li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-
-  <!-- Other Options Section -->
-  <div id="others" class="section" style="display:none;">
-    <h2>Other Options</h2>
-    <ul>
-      <li>Polytechnic / Diploma Courses (Fee: ~₹20,000 per year)</li>
-      <li>Paramedical Courses (Fee varies ₹30,000 – ₹70,000 per year)</li>
-      <li>CA / CS / CMA (Commerce Students)</li>
-      <li>Govt Job Preparation (Banking, Railways, Defence)</li>
-    </ul>
+    <button onclick="backToMain()">Back</button>
   </div>
 
 </body>
