@@ -9,7 +9,6 @@
     #info, #courseInfo, #collegeInfo { margin-top: 20px; }
   </style>
   <script>
-    // Career data structured by stream → course → exams → colleges → fees/location
     var careerData = {
       "MPC": {
         "Engineering (B.Tech/B.E)": {
@@ -73,9 +72,9 @@
       var courseDiv = document.getElementById("courseInfo");
       var infoDiv = document.getElementById("info");
       infoDiv.innerHTML = "";
-      if(stream == "") { courseDiv.innerHTML = ""; return; }
+      if(stream === "") { courseDiv.innerHTML = ""; return; }
 
-      var html = "<h3>Options for " + stream +":</h3>";
+      var html = "<h3>Options for " + stream + ":</h3>";
       html += "<select id='courseSelect' onchange='showExams()'><option value=''>--Select Course--</option>";
       for(var course in careerData[stream]) {
         html += "<option value='" + course + "'>" + course + "</option>";
@@ -89,11 +88,13 @@
       var stream = document.getElementById("stream").value;
       var course = document.getElementById("courseSelect").value;
       var infoDiv = document.getElementById("info");
-      if(course == "") { infoDiv.innerHTML = ""; return; }
+      if(course === "") { infoDiv.innerHTML = ""; return; }
 
       var exams = careerData[stream][course].exams;
       var html = "<h3>Exams Required for " + course + ":</h3><ul>";
-      for(var i=0;i<exams.length;i++) html += "<li>" + exams[i] + "</li>";
+      for(var i = 0; i < exams.length; i++) {
+        html += "<li>" + exams[i] + "</li>";
+      }
       html += "</ul>";
 
       html += "<h3>Select College:</h3>";
@@ -113,7 +114,7 @@
       var course = document.getElementById("courseSelect").value;
       var college = document.getElementById("collegeSelect").value;
       var feeDiv = document.getElementById("collegeInfo");
-      if(college == "") { feeDiv.innerHTML = ""; return; }
+      if(college === "") { feeDiv.innerHTML = ""; return; }
 
       var data = careerData[stream][course].colleges[college];
       feeDiv.innerHTML = "<h4>College: " + college + "</h4>" +
