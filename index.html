@@ -10,15 +10,8 @@
       background: linear-gradient(135deg, #FFDEE9, #B5FFFC);
       color: #333;
     }
-
-    h1 {
-      color: #FF6F61;
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
+    h1 { color: #FF6F61; text-align: center; margin-bottom: 30px; }
     h3 { color: #2E86AB; }
-
     select {
       padding: 8px;
       margin: 10px 0;
@@ -28,12 +21,7 @@
       background-color: #E0F7FA;
       transition: all 0.3s;
     }
-
-    select:hover {
-      border-color: #FF6F61;
-      background-color: #FFF3E0;
-    }
-
+    select:hover { border-color: #FF6F61; background-color: #FFF3E0; }
     #info, #courseInfo, #collegeInfo {
       margin-top: 20px;
       padding: 15px;
@@ -41,123 +29,110 @@
       background-color: rgba(255, 255, 255, 0.8);
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-
     #collegeInfo h4 { color: #FF6F61; }
     ul { list-style-type: square; padding-left: 20px; }
   </style>
 </head>
 <body>
-  <h1>🎉 Congratulations on Completing Intermediate! 🎉</h1>
-  <p>Select your Stream:</p>
-  <select id="stream" onchange="showCourses()">
-    <option value="">--Select Stream--</option>
-    <option value="MPC">MPC (Maths, Physics, Chemistry)</option>
-    <option value="BiPC">BiPC (Biology, Physics, Chemistry)</option>
-    <option value="CEC/MEC">CEC/MEC (Commerce)</option>
-  </select>
+<h1>🎉 Congratulations on Completing Intermediate! 🎉</h1>
+<p>Select your Stream:</p>
+<select id="stream" onchange="showCourses()">
+  <option value="">--Select Stream--</option>
+  <option value="MPC">MPC (Maths, Physics, Chemistry)</option>
+  <option value="BiPC">BiPC (Biology, Physics, Chemistry)</option>
+  <option value="CEC/MEC">CEC/MEC (Commerce)</option>
+</select>
 
-  <div id="courseInfo"></div>
-  <div id="info"></div>
-  <div id="collegeInfo"></div>
+<div id="courseInfo"></div>
+<div id="info"></div>
+<div id="collegeInfo"></div>
 
-  <script>
-    var careerData = {
-      "MPC": {
-        "Engineering (B.Tech/B.E)": {
-          exams: ["EAPCET", "JEE Main"],
-          colleges: {
-            "IIT Tirupati": { location: "Tirupati", fee: "₹1,00,000 per semester" },
-            "NIT Andhra Pradesh": { location: "Tadepalligudem", fee: "₹62,500 per semester" },
-            "JNTUK Kakinada": { location: "Kakinada", fee: "₹30,000 - ₹11,00,000 entire course" }
-          }
-        },
-        "Degree": {
-          exams: ["University Admission Test / Merit"],
-          colleges: {
-            "SRR & CVR Government College": { location: "Vijayawada", fee: "₹20,000–₹30,000 per year" },
-            "P. B. Siddhartha College of Arts & Science": { location: "Vijayawada", fee: "₹25,000–₹35,000 per year" },
-            "Vijaya College of Arts & Science": { location: "Vijayawada", fee: "₹20,000–₹30,000 per year" },
-            "Sri Venkateswara College of Science & Arts": { location: "Tirupati", fee: "₹25,000–₹40,000 per year" },
-            "Narayana College": { location: "Nellore / Vijayawada", fee: "₹30,000–₹50,000 per year" },
-            "Vignan Degree College": { location: "Guntur", fee: "₹50,000 per year" },
-            "Aditya Degree College": { location: "Surampalem Vijayawada Kakinada", fee: "₹40,000–₹60,000 per year" }
-          }
-        }
-      },
-      "BiPC": {
-        "Medicine (MBBS, BDS, BAMS, BHMS)": {
-          exams: ["NEET"],
-          colleges: {
-            "Andhra Medical College": { location: "Visakhapatnam", fee: "₹11,576 per year" },
-            "Guntur Medical College": { location: "Guntur", fee: "₹11,576 per year" }
-          }
-        }
-      },
-      "CEC/MEC": {
-        "Professional Courses (CA, CS, CMA)": {
-          exams: ["CPT / CS Foundation / CMA Foundation"],
-          colleges: {
-            "Chartered Accountancy (CA – ICAI)": { location: "India (national)", fee: "₹3,00,000 - ₹4,00,000 total" },
-            "Company Secretary (CS – ICSI)": { location: "India (national)", fee: "₹15,000 - ₹25,000 per stage" }
-          }
-        }
+<script>
+var careerData = {
+  "MPC": {
+    "Degree": {
+      exams: ["University Admission Test / Merit"],
+      colleges: {
+        "SRR & CVR Government College": { location: "Vijayawada", fee: "₹20,000–₹30,000 per year" },
+        "P. B. Siddhartha College of Arts & Science": { location: "Vijayawada", fee: "₹25,000–₹35,000 per year" },
+        "Vijaya College of Arts & Science": { location: "Vijayawada", fee: "₹20,000–₹30,000 per year" },
+        "Sri Venkateswara College of Science & Arts": { location: "Tirupati", fee: "₹25,000–₹40,000 per year" },
+        "Narayana College": { location: "Nellore / Vijayawada", fee: "₹30,000–₹50,000 per year" },
+        "Vignan Degree College": { location: "Guntur", fee: "₹50,000 per year" },
+        "Aditya Degree College": { location: "Surampalem Vijayawada Kakinada", fee: "₹40,000–₹60,000 per year" }
       }
-    };
-
-    function showCourses() {
-      var stream = document.getElementById("stream").value;
-      var courseDiv = document.getElementById("courseInfo");
-      var infoDiv = document.getElementById("info");
-      infoDiv.innerHTML = "";
-      if(stream === "") { courseDiv.innerHTML = ""; return; }
-
-      var html = "<h3>Options for " + stream + ":</h3>";
-      html += "<select id='courseSelect' onchange='showExams()'><option value=''>--Select Course--</option>";
-      for(var course in careerData[stream]) {
-        html += "<option value='" + course + "'>" + course + "</option>";
-      }
-      html += "</select>";
-      courseDiv.innerHTML = html;
-      document.getElementById("collegeInfo").innerHTML = "";
     }
-
-    function showExams() {
-      var stream = document.getElementById("stream").value;
-      var course = document.getElementById("courseSelect").value;
-      var infoDiv = document.getElementById("info");
-      if(course === "") { infoDiv.innerHTML = ""; return; }
-
-      var exams = careerData[stream][course].exams;
-      var html = "<h3>Exams Required for " + course + ":</h3><ul>";
-      for(var i = 0; i < exams.length; i++) {
-        html += "<li>" + exams[i] + "</li>";
+  },
+  "BiPC": {
+    "Medicine (MBBS, BDS, BAMS, BHMS)": {
+      exams: ["NEET"],
+      colleges: {
+        "Andhra Medical College": { location: "Visakhapatnam", fee: "₹11,576 per year" },
+        "Guntur Medical College": { location: "Guntur", fee: "₹11,576 per year" }
       }
-      html += "</ul>";
-
-      html += "<h3>Select College:</h3>";
-      html += "<select id='collegeSelect' onchange='showFee()'><option value=''>--Select College--</option>";
-      var colleges = careerData[stream][course].colleges;
-      for(var college in colleges) {
-        html += "<option value='" + college + "'>" + college + "</option>";
+    }
+  },
+  "CEC/MEC": {
+    "Professional Courses (CA, CS, CMA)": {
+      exams: ["CPT / CS Foundation / CMA Foundation"],
+      colleges: {
+        "Chartered Accountancy (CA – ICAI)": { location: "India (national)", fee: "₹3,00,000 - ₹4,00,000 total" },
+        "Company Secretary (CS – ICSI)": { location: "India (national)", fee: "₹15,000 - ₹25,000 per stage" }
       }
-      html += "</select>";
-      html += "<div id='collegeInfo'></div>";
-
-      infoDiv.innerHTML = html;
     }
+  }
+};
 
-    function showFee() {
-      var stream = document.getElementById("stream").value;
-      var course = document.getElementById("courseSelect").value;
-      var college = document.getElementById("collegeSelect").value;
-      var feeDiv = document.getElementById("collegeInfo");
-      if(college === "") { feeDiv.innerHTML = ""; return; }
+function showCourses() {
+  var stream = document.getElementById("stream").value;
+  var courseDiv = document.getElementById("courseInfo");
+  var infoDiv = document.getElementById("info");
+  infoDiv.innerHTML = "";
+  if(stream === "") { courseDiv.innerHTML = ""; return; }
 
-      var data = careerData[stream][course].colleges[college];
-      feeDiv.innerHTML = "<h4>College: " + college + "</h4>" +
-                         "<p>Location: " + data.location + "</p>" +
-                         "<p>Fee: " + data.fee + "</p>";
-    }
-  </script>
+  var html = "<h3>Options for " + stream + ":</h3>";
+  html += "<select id='courseSelect' onchange='showExams()'><option value=''>--Select Course--</option>";
+  for(var course in careerData[stream]) {
+    html += "<option value='" + course + "'>" + course + "</option>";
+  }
+  html += "</select>";
+  courseDiv.innerHTML = html;
+  document.getElementById("collegeInfo").innerHTML = "";
+}
+
+function showExams() {
+  var stream = document.getElementById("stream").value;
+  var course = document.getElementById("courseSelect").value;
+  var infoDiv = document.getElementById("info");
+  if(course === "") { infoDiv.innerHTML = ""; return; }
+
+  var exams = careerData[stream][course].exams;
+  var html = "<h3>Exams Required for " + course + ":</h3><ul>";
+  for(var i = 0; i < exams.length; i++) { html += "<li>" + exams[i] + "</li>"; }
+  html += "</ul>";
+
+  html += "<h3>Select College:</h3>";
+  html += "<select id='collegeSelect' onchange='showFee()'><option value=''>--Select College--</option>";
+  var colleges = careerData[stream][course].colleges;
+  for(var college in colleges) { html += "<option value='" + college + "'>" + college + "</option>"; }
+  html += "</select>";
+  html += "<div id='collegeInfo'></div>";
+
+  infoDiv.innerHTML = html;
+}
+
+function showFee() {
+  var stream = document.getElementById("stream").value;
+  var course = document.getElementById("courseSelect").value;
+  var college = document.getElementById("collegeSelect").value;
+  var feeDiv = document.getElementById("collegeInfo");
+  if(college === "") { feeDiv.innerHTML = ""; return; }
+
+  var data = careerData[stream][course].colleges[college];
+  feeDiv.innerHTML = "<h4>College: " + college + "</h4>" +
+                     "<p>Location: " + data.location + "</p>" +
+                     "<p>Fee: " + data.fee + "</p>";
+}
+</script>
 </body>
 </html>
