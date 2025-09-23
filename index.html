@@ -1,66 +1,149 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Career Options after Intermediate</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    h1 { color: green; }
-    select, button { margin: 10px 0; padding: 5px; }
-    #info, #courseInfo, #collegeInfo { margin-top: 20px; }
-    /* Gradient background and font */
-    body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: linear-gradient(135deg, #FFDEE9, #B5FFFC);
-      color: #333;
-    }
+<meta charset="UTF-8">
+<title>Intermediate Career Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: #f4f6f8;
+    color: #333;
+  }
 
-    h1 {
-      color: #FF6F61;
-      text-align: center;
-      margin-bottom: 30px;
-    }
+  /* Layout */
+  .dashboard {
+    display: flex;
+    min-height: 100vh;
+  }
+  .sidebar {
+    width: 250px;
+    background: #2E86AB;
+    color: white;
+    padding: 20px;
+    flex-shrink: 0;
+  }
+  .sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #FFD166;
+  }
+  .sidebar button {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0;
+    background: #05668D;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: left;
+    font-size: 16px;
+  }
+  .sidebar button:hover {
+    background: #028090;
+  }
 
-    h3 {
-      color: #2E86AB;
-    }
+  .main-content {
+    flex: 1;
+    padding: 30px;
+  }
 
-    select {
-      padding: 8px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 2px solid #2E86AB;
-      font-size: 16px;
-      background-color: #E0F7FA;
-      transition: all 0.3s;
-    }
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .header h1 {
+    color: #FF6F61;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+  }
 
-    select:hover {
-      border-color: #FF6F61;
-      background-color: #FFF3E0;
-    }
+  .panel {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
 
-    #info, #courseInfo, #collegeInfo {
-      margin-top: 20px;
-      padding: 15px;
-      border-radius: 10px;
-      background-color: rgba(255, 255, 255, 0.8);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
+  select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #2E86AB;
+    font-size: 16px;
+    margin: 10px 0;
+    width: 100%;
+    transition: 0.3s;
+  }
+  select:hover {
+    border-color: #FF6F61;
+  }
 
-    #collegeInfo h4 {
-      color: #FF6F61;
-    }
+  .college-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 15px;
+  }
+  .college-card {
+    background: linear-gradient(135deg, #FFD166, #FF6F61);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    color: #fff;
+    transition: 0.3s;
+  }
+  .college-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+  }
+  .college-card h4 { margin-bottom: 8px; }
+  .college-card p { margin: 5px 0; }
 
-    ul {
-      list-style-type: square;
-      padding-left: 20px;
-    }
-  </style>
-  <script>
-    var careerData = {
-      "MPC": {
+  /* Responsive */
+  @media(max-width: 768px){
+    .dashboard { flex-direction: column; }
+    .sidebar { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="dashboard">
+  <div class="sidebar">
+    <h2>Streams</h2>
+    <button onclick="selectStream('MPC')">MPC</button>
+    <button onclick="selectStream('BiPC')">BiPC</button>
+    <button onclick="selectStream('CEC/MEC')">CEC/MEC</button>
+  </div>
+
+  <div class="main-content">
+    <div class="header">
+      <h1>Intermediate Career Dashboard</h1>
+    </div>
+
+    <div class="panel">
+      <h3>Courses & Exams</h3>
+      <select id="courseSelect" onchange="showColleges()">
+        <option value="">--Select Course--</option>
+      </select>
+      <div id="examsInfo" style="margin-top:15px;"></div>
+    </div>
+
+    <div class="panel">
+      <h3>Colleges</h3>
+      <div id="collegeCards" class="college-cards"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+var careerData = {
+"MPC": {
         "Engineering (B.Tech/B.E)": {
           exams: ["EAPCET", "JEE Main"],
           colleges: {
@@ -162,79 +245,53 @@
           }
         }
       }
-    };
+    
+};
 
-    function showCourses() {
-      var stream = document.getElementById("stream").value;
-      var courseDiv = document.getElementById("courseInfo");
-      var infoDiv = document.getElementById("info");
-      infoDiv.innerHTML = "";
-      if(stream === "") { courseDiv.innerHTML = ""; return; }
+var currentStream = "";
 
-      var html = "<h3>Options for " + stream + ":</h3>";
-      html += "<select id='courseSelect' onchange='showExams()'><option value=''>--Select Course--</option>";
-      for(var course in careerData[stream]) {
-        html += "<option value='" + course + "'>" + course + "</option>";
-      }
-      html += "</select>";
-      courseDiv.innerHTML = html;
-      document.getElementById("collegeInfo").innerHTML = "";
-    }
+function selectStream(stream){
+  currentStream = stream;
+  var courses = careerData[stream];
+  var courseSelect = document.getElementById("courseSelect");
+  courseSelect.innerHTML = "<option value=''>--Select Course--</option>";
+  for(var course in courses){
+    var opt = document.createElement("option");
+    opt.value = course;
+    opt.innerText = course;
+    courseSelect.appendChild(opt);
+  }
+  document.getElementById("examsInfo").innerHTML = "";
+  document.getElementById("collegeCards").innerHTML = "";
+}
 
-    function showExams() {
-      var stream = document.getElementById("stream").value;
-      var course = document.getElementById("courseSelect").value;
-      var infoDiv = document.getElementById("info");
-      if(course === "") { infoDiv.innerHTML = ""; return; }
+function showColleges(){
+  var course = document.getElementById("courseSelect").value;
+  var examsDiv = document.getElementById("examsInfo");
+  var collegesDiv = document.getElementById("collegeCards");
+  examsDiv.innerHTML = "";
+  collegesDiv.innerHTML = "";
 
-      var exams = careerData[stream][course].exams;
-      var html = "<h3>Exams Required for " + course + ":</h3><ul>";
-      for(var i = 0; i < exams.length; i++) {
-        html += "<li>" + exams[i] + "</li>";
-      }
-      html += "</ul>";
+  if(!course) return;
 
-      html += "<h3>Select College:</h3>";
-      html += "<select id='collegeSelect' onchange='showFee()'><option value=''>--Select College--</option>";
-      var colleges = careerData[stream][course].colleges;
-      for(var college in colleges) {
-        html += "<option value='" + college + "'>" + college + "</option>";
-      }
-      html += "</select>";
-      html += "<div id='collegeInfo'></div>";
+  // Show exams
+  var exams = careerData[currentStream][course].exams;
+  var html = "<strong>Exams Required:</strong><ul>";
+  exams.forEach(e => html += "<li>"+e+"</li>");
+  html += "</ul>";
+  examsDiv.innerHTML = html;
 
-      infoDiv.innerHTML = html;
-    }
+  // Show colleges
+  var colleges = careerData[currentStream][course].colleges;
+  for(var col in colleges){
+    var data = colleges[col];
+    var card = document.createElement("div");
+    card.className = "college-card";
+    card.innerHTML = "<h4>"+col+"</h4><p><strong>Location:</strong> "+data.location+"</p><p><strong>Fee:</strong> "+data.fee+"</p>";
+    collegesDiv.appendChild(card);
+  }
+}
+</script>
 
-    function showFee() {
-      var stream = document.getElementById("stream").value;
-      var course = document.getElementById("courseSelect").value;
-      var college = document.getElementById("collegeSelect").value;
-      var feeDiv = document.getElementById("collegeInfo");
-      if(college === "") { feeDiv.innerHTML = ""; return; }
-
-      var data = careerData[stream][course].colleges[college];
-      feeDiv.innerHTML = "<h4>College: " + college + "</h4>" +
-                         "<p>Location: " + data.location + "</p>" +
-                         "<p>Fee: " + data.fee + "</p>";
-    }
-  </script>
-</head>
-<body>
-  <h1>🎉 Congratulations on Completing Intermediate! 🎉</h1>
-  <p>Select your Stream:</p>
-  <select id="stream" onchange="showCourses()">
-    <option value="">--Select Stream--</option>
-    <option value="MPC">MPC (Maths, Physics, Chemistry)</option>
-    <option value="BiPC">BiPC (Biology, Physics, Chemistry)</option>
-    <option value="CEC/MEC">CEC/MEC (Commerce)</option>
-  </select>
-
-  <div id="courseInfo"></div>
-  <div id="info"></div>
-  <div id="collegeInfo"></div>
 </body>
 </html>
-
-
-
